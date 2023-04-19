@@ -1,0 +1,22 @@
+{
+  "name": "unix-timestamp-api-testing",
+  "version": "1.0.0",
+  "description": "API testing on UNIX timestamp coverted to Date",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress:run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jpourdanis/unix-timestamp-api-testing.git"
+  },
+  "author": "John Pourdanis (www.jpourdanis.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpourdanis/unix-timestamp-api-testing/issues"
+  },
+  "homepage": "https://github.com/jpourdanis/unix-timestamp-api-testing#readme",
+  "devDependencies": {
+    "cypress": "^12.10.0"
+  }
+}

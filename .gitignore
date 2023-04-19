@@ -1,0 +1,27 @@
+/node_modules
+.nyc_output
+coverage
+cypress/videos
+cypress/screenshots
+/public/uploaded/*.png
+/public/uploaded/*.jpg
+public/css
+public/js
+cypress.env.json
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+#playwright
+
+/test-results/
+/playwright-report/
+/playwright/.cache/
