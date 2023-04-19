@@ -1,9 +1,20 @@
 name: Main Workflow
 on: [push]
 jobs:
+  cypress-run-external-api:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cypress run external API Tests
+        uses: cypress-io/github-action@v4
+        with:
+          spec: cypress/e2e/*.js
+        env:
+          CYPRESS_BASE_URL: https://helloacm.com/api/unix-timestamp-converter
   build:
     name: Run k6 test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2

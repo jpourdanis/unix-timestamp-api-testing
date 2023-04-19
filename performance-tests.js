@@ -17,6 +17,7 @@ function randomDate(start, end) {
 }
 
 export default function () {
+  const randomString = (Math.random() + 1).toString(36).substring(7);
   const inputDate = randomDate(new Date(1970, 0, 1), new Date());
   const inputDateString =
     inputDate.getUTCFullYear() +
@@ -31,15 +32,59 @@ export default function () {
     ":" +
     inputDate.getUTCSeconds();
   const expectedTimestamp = Math.floor(inputDate.getTime() / 1000);
+
   console.log(inputDateString);
   console.log(expectedTimestamp);
-  const res = http.get(
-    `https://helloacm.com/api/unix-timestamp-converter/?cached&s=${inputDateString}`
-  );
+  console.log(randomString);
+
+  const dateToTimestampCached = {
+    method: "GET",
+    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=2016-01-01%202:3:22`,
+  };
+
+  const timestampToDateCached = {
+    method: "GET",
+    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=1451613802`,
+  };
+
+  const invalidDateStringCached = {
+    method: "GET",
+    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=foo`,
+  };
+
+  const dateToTimestamp = {
+    method: "GET",
+    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=${inputDateString}`,
+  };
+
+  const timestampToDate = {
+    method: "GET",
+    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=${expectedTimestamp}`,
+  };
+
+  const invalidDateString = {
+    method: "GET",
+    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=${randomString}`,
+  };
+
+  const responses = http.batch([
+    dateToTimestampCached,
+    timestampToDateCached,
+    invalidDateStringCached,
+  ]);
 
   sleep(1);
-  check(res, {
+  check(responses[0], {
     "status is 200": (r) => r.status === 200,
-    "response body is correct": (r) => r.body.includes(expectedTimestamp),
+    "response body is correct": (r) => r.body.includes(1451613802),
+  });
+
+  check(responses[1], {
+    "status is 200": (r) => r.status === 200,
+    "response body is correct": (r) => r.body.includes("2016-01-01"),
+  });
+
+  check(responses[2], {
+    "response body is correct": (r) => r.body.includes(false),
   });
 }
