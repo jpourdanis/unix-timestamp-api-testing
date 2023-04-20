@@ -4,7 +4,7 @@
   "description": "API testing on UNIX timestamp coverted to Date",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress:run"
+    "test": "npx cypress run"
   },
   "repository": {
     "type": "git",

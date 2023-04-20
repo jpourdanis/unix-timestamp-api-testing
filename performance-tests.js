@@ -71,6 +71,9 @@ export default function () {
     dateToTimestampCached,
     timestampToDateCached,
     invalidDateStringCached,
+    dateToTimestamp,
+    timestampToDate,
+    invalidDateString,
   ]);
 
   sleep(1);
@@ -85,6 +88,27 @@ export default function () {
   });
 
   check(responses[2], {
+    "response body is correct": (r) => r.body.includes(false),
+  });
+
+  check(responses[3], {
+    "status is 200": (r) => r.status === 200,
+    "response body is correct": (r) => r.body.includes(expectedTimestamp),
+  });
+
+  check(responses[4], {
+    "status is 200": (r) => r.status === 200,
+    "response body is correct": (r) =>
+      r.body.includes(
+        inputDate.getUTCFullYear() +
+          "-" +
+          (inputDate.getUTCMonth() + 1) +
+          "-" +
+          inputDate.getUTCDate()
+      ),
+  });
+
+  check(responses[5], {
     "response body is correct": (r) => r.body.includes(false),
   });
 }
