@@ -20,6 +20,13 @@ You should see the following report to your terminal :
 
 ![Cypress basic API tests](cypress-run.png)
 
+Scenarios that will run are :
+
+1. returns a valid Unix timestamp for a valid date string.
+2. returns a valid date string for a valid Unix timestamp.
+3. returns false for an invalid date string.
+4. returns false for an empty date string.
+
 ## Performance Test Tool Installation
 
 We will use k6s for Performance testing, a new tool writen in Go and you can write easily tests in Javascript.
