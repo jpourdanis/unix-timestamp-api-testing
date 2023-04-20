@@ -1,27 +1,30 @@
 # unix-timestamp-api-testing
+
 API performance testing on UNIX timestamp converted to Date and vise versa ( https://helloacm.com/tools/unix-timestamp-converter/ )
 
 ## Installation
 
-Checkout the repository to run first the Cypress API tests to verify that works as expected (use Node latest lts version ) : 
+Checkout the repository to run first the Cypress API tests to verify that works as expected (use Node latest lts version ) :
 
 ```console
 npm i
 ```
+
 After package installation use the following command to run the basic tests :
 
 ```console
 npm run test
 ```
+
 You should see the following report to your terminal :
 
 ![Cypress basic API tests](cypress-run.png)
 
-## Performance Test Tool Installation 
+## Performance Test Tool Installation
 
 We will use k6s for Performance testing, a new tool writen in Go and you can write easily tests in Javascript.
 
-### Debian/ Ubuntu 
+### Debian/ Ubuntu
 
 ```console
 sudo gpg -k
@@ -31,6 +34,7 @@ sudo apt-get update
 sudo apt-get install k6
 
 ```
+
 ### MacOS
 
 ```console
@@ -56,12 +60,15 @@ You can select what works for you.
 If you use OS installation you can use the following command
 
 ```console
-k6 run performance-tests.js 
+k6 run performance-tests.js
 ```
-or with Docker 
+
+or with Docker
+
 ```console
  docker run --rm -i grafana/k6 run - <performance-tests.js
 ```
+
 Predefined settings are 10 virtual users will make requests to API for 30 seconds.
 
 The API has cache mechanism so to make it like a real world scenario we added a function that creates a random date, so on each request
@@ -77,9 +84,10 @@ The implementations have both for static parameters and for random parameters to
 
 1. Date -> Timestamp
 2. Timestamp -> Date
-3. Invalid Date string 
+3. Invalid Date string
 
 ![k6s Report](k6s-report.png)
 
+We also use GitHub Actions to run all those tests to have objective results because if you run it on your local machine there are some parameters that can affect the results like your Network speed.
 
-
+[![Main Workflow](https://github.com/jpourdanis/unix-timestamp-api-testing/actions/workflows/unix-timestamp-test.yml/badge.svg)](https://github.com/jpourdanis/unix-timestamp-api-testing/actions/workflows/unix-timestamp-test.yml)
