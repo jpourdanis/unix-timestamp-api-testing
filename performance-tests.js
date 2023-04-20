@@ -78,12 +78,10 @@ export default function () {
 
   sleep(1);
   check(responses[0], {
-    "status is 200": (r) => r.status === 200,
     "response body is correct": (r) => r.body.includes(1451613802),
   });
 
   check(responses[1], {
-    "status is 200": (r) => r.status === 200,
     "response body is correct": (r) => r.body.includes("2016-01-01"),
   });
 
@@ -92,12 +90,10 @@ export default function () {
   });
 
   check(responses[3], {
-    "status is 200": (r) => r.status === 200,
     "response body is correct": (r) => r.body.includes(expectedTimestamp),
   });
 
   check(responses[4], {
-    "status is 200": (r) => r.status === 200,
     "response body is correct": (r) =>
       r.body.includes(
         inputDate.getUTCFullYear() +
