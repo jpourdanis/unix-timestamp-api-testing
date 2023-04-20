@@ -17,6 +17,8 @@ function randomDate(start, end) {
 }
 
 export default function () {
+  const BASE_URL = "https://helloacm.com/api/unix-timestamp-converter/";
+
   const randomString = (Math.random() + 1).toString(36).substring(7);
   const inputDate = randomDate(new Date(1970, 0, 1), new Date());
   const inputDateString =
@@ -39,32 +41,32 @@ export default function () {
 
   const dateToTimestampCached = {
     method: "GET",
-    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=2016-01-01%202:3:22`,
+    url: `${BASE_URL}?cached&s=2016-01-01%202:3:22`,
   };
 
   const timestampToDateCached = {
     method: "GET",
-    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=1451613802`,
+    url: `${BASE_URL}?cached&s=1451613802`,
   };
 
   const invalidDateStringCached = {
     method: "GET",
-    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=foo`,
+    url: `${BASE_URL}?cached&s=foo`,
   };
 
   const dateToTimestamp = {
     method: "GET",
-    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=${inputDateString}`,
+    url: `${BASE_URL}?cached&s=${inputDateString}`,
   };
 
   const timestampToDate = {
     method: "GET",
-    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=${expectedTimestamp}`,
+    url: `${BASE_URL}?cached&s=${expectedTimestamp}`,
   };
 
   const invalidDateString = {
     method: "GET",
-    url: `https://helloacm.com/api/unix-timestamp-converter/?cached&s=${randomString}`,
+    url: `${BASE_URL}?cached&s=${randomString}`,
   };
 
   const responses = http.batch([
