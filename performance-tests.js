@@ -39,31 +39,37 @@ export default function () {
   console.log(expectedTimestamp);
   console.log(randomString);
 
+  // Scenario that use a static value to Date to check the cache mechanism
   const dateToTimestampCached = {
     method: "GET",
     url: `${BASE_URL}?cached&s=2016-01-01%202:3:22`,
   };
 
+  // Scenario that use a static value to Timestamp to check the cache mechanism
   const timestampToDateCached = {
     method: "GET",
     url: `${BASE_URL}?cached&s=1451613802`,
   };
 
+  // Scenario that use a static value to invalid Date string to check the cache mechanism
   const invalidDateStringCached = {
     method: "GET",
     url: `${BASE_URL}?cached&s=foo`,
   };
 
+  // Scenario that use a random value to Date string to avoid cache mechanism
   const dateToTimestamp = {
     method: "GET",
     url: `${BASE_URL}?cached&s=${inputDateString}`,
   };
 
+  // Scenario that use a random value to Timestamp to avoid cache mechanism
   const timestampToDate = {
     method: "GET",
     url: `${BASE_URL}?cached&s=${expectedTimestamp}`,
   };
 
+  // Scenario that use a random value to invalid Date string to avoid cache mechanism
   const invalidDateString = {
     method: "GET",
     url: `${BASE_URL}?cached&s=${randomString}`,
